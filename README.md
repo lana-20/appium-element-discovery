@@ -79,9 +79,9 @@ Both apps have the exact same set of features, so you might find that simply ope
 
 Download and open Appium Inspector, populate the <code>Remote Host</code> and <code>Remote Port</code> fields, as well as add your capabilities one by one under the <code>Desired Capabilities</code> tab.
 
-<img width="800" src="https://user-images.githubusercontent.com/70295997/224853042-44a8a955-07d2-4ac1-94f0-eaecd4f54825.png">
+<img width="800" src="https://user-images.githubusercontent.com/70295997/224860839-9b80ed3a-8f7d-4c39-9ede-ae060b047e3c.png">
 
-The same way that we define an Appium server location and a set of capabilities in code, we can do it here, only by clicking and typing. So let's figure out how to configure this so that we can start a session on our test app. First, I'm going to look at the Server configuration portion. I want to make sure that "Custom Server" is selected, because I'm going to talk to the Appium server I already have running on the command line. So for Remote Host I'm going to make sure it's <code>localhost</code>, and for port, <code>4723</code>. And for Remote Path, it should just be <code>/</code> because my Appium server is hosting everything directly on the server, with no extra path prefix.
+The same way that we define an Appium server location and a set of capabilities in code, we can do it here, only by clicking and typing. So let's figure out how to configure this so that we can start a session on our test app. First, I'm going to look at the Server configuration portion. I want to make sure that "Appium Server" tab is selected, because I'm going to talk to the Appium server I already have running on the command line. So for Remote Host I'm going to make sure it's <code>localhost</code>, and for port, <code>4723</code>. And for Remote Path, it should just be <code>/</code> because my Appium server is hosting everything directly on the server, with no extra path prefix.
 
 Now I'm looking at the Desired Capabilities tab on the bottom. I can use this interface to add, edit, and remove capabilities. Let's start setting up the capabilities for my app. I just start filling them out, but if we need any reminders, we can always look at what we have in our Python script for iOS for axample, since we just want the same capabilities as those.
 
@@ -93,13 +93,18 @@ Now I'm looking at the Desired Capabilities tab on the bottom. I can use this in
 
 Once I've set these, my capabilities are complete. But I don't want to have to do this again, so I can save the capabilities as a set by clicking 'Save As...', and giving them a name. Now, if I want to use these same capabilities in the future, I can just go over to the Saved Capability Sets tab, find the one I want, and start a session.
 
-So now I'm ready to start a session, and I'll click the button to get going. At this point, a new session is starting on our Appium server. It's not being started by Python anymore, but rather is being started by Appium Inspector, which is in itself a graphical Appium client. nce the session is up and loaded, I'm greeted with the Appium Desktop Inspector UI. In this UI, there are three main sections. On the left we have a screenshot of the app. In the middle we have the app hierarchy as an XML document that we can actually navigate through. And on the right, we have a sidebar that will show us details about any selected elements.
+So now I'm ready to start a session, and I'll click the button to get going. At this point, a new session is starting on our Appium server. If we look at the Appium server logs, we can see that they are doing things and handling our session just as though we were running a new sesssion request from code.
 
-<img width="900" src="https://user-images.githubusercontent.com/70295997/224855352-3a0d76b7-68cc-46cb-8c27-90213943bac1.png">
+<img width="800" src="https://user-images.githubusercontent.com/70295997/224861934-af90b318-9438-49a4-9bb0-df42815a3688.png">
+
+
+It's not being started by Python anymore, but rather is being started by Appium Inspector, which is in itself a graphical Appium client. Once the session is up and loaded, I'm greeted with the Appium Inspector UI. In this UI, there are three main sections. On the left we have a screenshot of the app. In the middle we have the app hierarchy as an XML document that we can actually navigate through. And on the right, we have a sidebar that will show us details about any selected elements.
+
+<img width="800" src="https://user-images.githubusercontent.com/70295997/224855352-3a0d76b7-68cc-46cb-8c27-90213943bac1.png">
 
 To select an element, all I need to do is start hovering over the screenshot. Appium Inspector will highlight sections it thinks contain an element for me. I'll go ahead and click the "Login Screen" list item here. When I do that, a bunch of information pops up on the right, and the corresponding XML node is selected in the source tree. Now let's have a look at the "Selected Element" section. There are three main parts to it here. Up top we have a series of buttons that allow me to take actions with this element. If I want, I could tap, send keys, or clear this element. I'm going to hold off on that for now.
 
-<img width="900" src="https://user-images.githubusercontent.com/70295997/224856174-95d273e9-9872-4fcc-8d5d-7d7dd2b9b722.png">
+<img width="800" src="https://user-images.githubusercontent.com/70295997/224862583-166d010b-f33e-4039-bb8a-94ed80bc6f00.png">
 
 At the bottom of this section, we have a table with all the attributes this element contains, and their values. So here we see the same name and label attributes we saw in the page source we printed out earlier. But it's what's above this part that's most interesting. Just below the action buttons is another table that has suggested locator strategies and selectors! This is pretty cool. Just by clicking an element in the screenshot, Appium Desktop's Inspector is able to suggest how I might find this element using an Appium locator strategy and selector. In some cases, multiple strategies might be available, as is the case here.
 
