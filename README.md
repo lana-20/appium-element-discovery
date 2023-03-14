@@ -6,7 +6,7 @@
 
 Let's learn how to decide on locator strategies and selectors for finding elements in our mobile apps. There are two basic ways to do this. I'm going to show you one way first, even though the second way is much better and easier. So what's the first way, and why should we care about it? The first way to discover locators is to simply print out the page source and examine it yourself, learning from the various element properties what you need to know in order to find a given element.
 
-This is an important skill to learn because it's one you may need to fall back on at some point. In certain circumstances or environments you might not have access to the tools that make your life easier in determining selectors. But if you can run an Appium session, you can get the page source! In fact, examining the page source is a useful debugging technique, not just a technique for finding elements.
+This is an important skill to learn because it's one you may need to fall back on at some point. In certain circumstances or environments you might not have access to the tools that make your life easier in determining selectors. But if you can run an Appium session, you can get the page source! In fact, *examining the page source is a useful debugging technique, not just a technique for finding elements*.
 
 To illustrate this I'm going to use file [<code>source_ios.py</code>](https://github.com/lana-20/appium-element-discovery/blob/main/source_ios.py) as a code sample:
 
@@ -32,7 +32,7 @@ To illustrate this I'm going to use file [<code>source_ios.py</code>](https://gi
     finally:
         driver.quit()
 
-What we want to do is print out the page source instead:
+What we want to do is print out the page source:
 
     print(driver.page_source)
 
@@ -54,7 +54,14 @@ Or, on macOS
 
         python3 source_ios.py
 
-Once this is complete, what do we see? The script has finished, having printed out a bunch of stuff here. This is an XML document representing the structure of the UI at the time we requested the page source. Every element that Appium knows about is represented as an XML node here. So if you don't see an element in this document, then Appium will not be able to find it as a normal UI element. Let's look down through this for a bit. I see that each element has a type, like <code>XCUIElementTypeStaticText</code> or <code>XCUIElementTypeOther</code>. There's not too many different types, really, so they're not necessarily all that helpful. But each element has a set of attributes, which can be pretty helpful. For example, I see this section here which appears to show the list of views in my app. Looking at the <code>name</code> attribute, I see "Echo Box", "Login Screen", and so on. And this <code>name</code> attribute is actually quite important, since on iOS, if an element has a <code>name</code> attribute, that means we can find that element using the Accessibility ID strategy, and for our selector using the value of this <code>name</code> attribute. So looking at this source, I could find any of these elements like Echo Box or Login Screen simply by using the Accessibility ID strategy.
+Once this is complete, what do we see? The script has finished, having printed out a bunch of stuff here. 
+
+<img width="1000" src="https://user-images.githubusercontent.com/70295997/224857879-0781d8fb-6418-41c5-b885-f002d45a0bac.png">
+
+This is an XML document representing the structure of the UI at the time we requested the page source. Every element that Appium knows about is represented as an XML node here. So if you don't see an element in this document, then Appium will not be able to find it as a normal UI element. Let's look down through this for a bit. I see that each element has a type, like <code>XCUIElementTypeStaticText</code> or <code>XCUIElementTypeOther</code>. There's not too many different types, really, so they're not necessarily all that helpful. But each element has a set of attributes, which can be pretty helpful. For example, I see this section here which appears to show the list of views in my app. Looking at the <code>name</code> attribute, I see "Echo Box", "Login Screen", and so on. And this <code>name</code> attribute is actually quite important, since on iOS, if an element has a <code>name</code> attribute, that means we can find that element using the Accessibility ID strategy, and for our selector using the value of this <code>name</code> attribute. So looking at this source, I could find any of these elements like Echo Box or Login Screen simply by using the Accessibility ID strategy.
+
+<img width="1000" src="https://user-images.githubusercontent.com/70295997/224858535-214b8451-3450-44be-9105-38d30de914eb.png">
+
 
 As you can imagine, looking at the XML output here is also useful for coming up with XPath selectors, because when you run an XPath query to find an element, it is precisely this document which is consulted in order to do so! So once you've learned a bit more advanced XPath, you can walk through this document and figure out what a good XPath query might be for a particular element in the document that you want to find with Appium. This is useful, but not particularly fun or easy.   
 
