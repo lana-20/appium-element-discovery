@@ -106,17 +106,17 @@ To select an element, all I need to do is start hovering over the screenshot. Ap
 
 <img width="800" src="https://user-images.githubusercontent.com/70295997/224862583-166d010b-f33e-4039-bb8a-94ed80bc6f00.png">
 
-At the bottom of this section, we have a table with all the attributes this element contains, and their values. So here we see the same name and label attributes we saw in the page source we printed out earlier. But it's what's above this part that's most interesting. Just below the action buttons is another table that has suggested locator strategies and selectors! This is pretty cool. Just by clicking an element in the screenshot, Appium Desktop's Inspector is able to suggest how I might find this element using an Appium locator strategy and selector. In some cases, multiple strategies might be available, as is the case here.
+At the bottom of this section, we have a table with all the attributes this element contains, and their values. We can discover these with code using the <code>element.get_attribute()</code> method. Or we see the same name and label attributes we saw in the page source we printed out earlier. But it's what's above this part that's most interesting. Just below the action buttons is another table that has suggested locator strategies and selectors. This is pretty cool. Just by clicking an element in the screenshot, Appium Desktop's Inspector is able to suggest how I might find this element using an Appium locator strategy and selector. In some cases, multiple strategies might be available, as is the case here.
 
+<img width="500" src="https://user-images.githubusercontent.com/70295997/224863602-4399e41a-753a-4401-831f-4b5cb0bb4d80.png">
 
-... img - name & label attrs, suggested locator
+I can either find this element by accessibility ID, using the 'Login Screen' string, or I can find it by XPath, using the query <code>//XCUIElementTypeOther[@name='Login Screen']</code>. Of course I'll choose Accessibility ID since it will be faster and potentially more stable. But notice that the XPath query Appium recommends is actually quite a good one. It's recommending a query which is using a unique attribute of the element, to make sure that it is as stable as possible. If the Inspector isn't able to find a good strategy and selector for you to use, it will always recommend an XPath query of some kind. But if this is not based on unique element attributes, a warning will be displayed so you know it might not be the best stable selector.
 
+There's a lot more to the Inspector, and I hope you spend some good time playing around with it. For now, I just wanted to show you how to use the Inspector to have it recommend locator strategies and selectors for you. In most cases, this is enough to get you through automating your app. Just load up the Inspector, find the elements you'll need to interact with, and make a note of any good strategies and selectors it recommends. You can then implement them in your code. So that's all for now, but by all means, keep exploring the Inspector, and you might discover some fun features including action recording and code generation.
 
-I can either find this element by accessibility ID, using the 'Login Screen' string, or I can find it by XPath, using the query provided here. Of course I'll choose Accessibility ID since it will be faster and potentially more stable. But notice that the XPath query Appium recommends is actually quite a good one. It's recommending a query which is using a unique attribute of the element, to make sure that it is as stable as possible. If the Inspector isn't able to find a good strategy and selector for you to use, it will always recommend an XPath query of some kind. But if this is not based on unique element attributes, a warning will be displayed so you know it might not be the best selector.
+And, as always, don't forget to cleanly quit your session by clicking "Quit Session and Close Inspector".
 
-There's a lot more to the Inspector, and I hope you spend some good time playing around with it. For now, I just wanted to show you how to use the Inspector to have it recommend locator strategies and selectors for you. In most cases, this is enough to get you through automating your app! Just load up the inspector, find the elements you'll need to interact with, and make a note of any good strategies and selectors it recommends. You can then implement them in your code! So that's all for now, but by all means, keep exploring the Inspector, and you might discover some fun features including action recording and code generation!
-
-
+<img width="400" src="https://user-images.githubusercontent.com/70295997/224864712-7076697f-77f3-4bc7-8a45-1eae62e88bc4.png">
 
 
 
