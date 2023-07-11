@@ -106,7 +106,7 @@ To select an element, all I need to do is start hovering over the screenshot. Ap
 
 <img width="800" src="https://user-images.githubusercontent.com/70295997/224862583-166d010b-f33e-4039-bb8a-94ed80bc6f00.png">
 
-At the bottom of this section, we have a table with all the attributes this element contains, and their values. We can discover these with code using the <code>element.get_attribute()</code> method. Or we see the same name and label attributes we saw in the page source we printed out earlier. But it's what's above this part that's most interesting. Just below the action buttons is another table that has suggested locator strategies and selectors. This is pretty cool. Just by clicking an element in the screenshot, Appium Desktop's Inspector is able to suggest how I might find this element using an Appium locator strategy and selector. In some cases, multiple strategies might be available, as is the case here.
+At the bottom of this section, we have a table with all the attributes this element contains, and their values. We can discover these with code using the <code>element.get_attribute()</code> method. Or we see the same name and label attributes we saw in the page source we printed out earlier. But it's what's above this part that's most interesting. Just below the action buttons is another table that has suggested locator strategies and selectors. This is pretty cool. Just by clicking an element in the screenshot, Appium Inspector is able to suggest how I might find this element using an Appium locator strategy and selector. In some cases, multiple strategies might be available, as is the case here.
 
 <img width="500" src="https://user-images.githubusercontent.com/70295997/224863602-4399e41a-753a-4401-831f-4b5cb0bb4d80.png">
 
